@@ -1,89 +1,105 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume - Muhammad Farhan</title>
-    <link rel="stylesheet" href="./src/css/style.css">
+    <title>Dynamic Resume Builder</title>
+    <link rel="stylesheet" href="./public/css/style.css">
 </head>
 <body>
-  <section class="container">
-    <div class="header">
-      <div class="profile-image">
-        <img src="./src/image/imgtag.jpg" alt="Muhammad Farhan" class="profile-img">
-      </div>
-      <div class="profile-details">
-        <h1>Muhammad Farhan</h1>
-        <ul>
-            <li><strong>ADDRESS:</strong>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique, maxime! Karachi</li>
-            <li><strong>DOB:</strong> 16<sup>th</sup> July 1990</li>
-            <li><strong>Religion:</strong> Islam</li>
-            <li><strong>Cell:</strong> +92345XXXXXXX</li>
-            <li><strong>Email:</strong> abc.karachi@gmail.com</li>
-        </ul>
-      </div>
-    </div>
+    <section class="container">
+        <h1>Create Your Resume</h1>
+        
+        <form id="resumeForm" class="resume-form">
+            <h2>Personal Information</h2>
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" id="address" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="religion">Religion:</label>
+                <input type="text" id="religion" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="cell">Phone:</label>
+                <input type="tel" id="cell" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" class="form-control" required>
+            </div>
 
-    <hr>
+            <h2>Profile Image</h2>
+            <div class="form-group">
+                <label for="profileImage">Upload your image:</label>
+                <input type="file" id="profileImage" class="form-control" accept="image/*">
+            </div>
 
-    <h2 class="section-title">Work Experience</h2>
-    <div id="experience-section" class="toggle-section">
-      <table class="experience-table">
-          <tr>
-              <td><strong>Aga Khan University & Hospital</strong> <em>(Analyst-Communication)</em> November 2021 till Present</td>
-          </tr>
-          <tr><td>Providing Tier 2 Support to AKUH users regarding IP Telephony and Traditional Telephony.</td></tr>
-          <tr><td>Installation and maintenance of EPABX MDF and IDFs.</td></tr>
-          <tr><td>Key part in completion of AKU Telephony Projects e.g., Garden Hospital, PRO (Metro) Office.</td></tr>
-      </table>
-    </div>
+            <h2>Work Experience</h2>
+            <div class="form-group">
+                <label for="jobTitle">Job title:</label>
+                <input type="text" id="jobTitle" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="company">Company</label>
+                <input type="text" id="company" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="jobDescription">Description:</label>
+                <input type="text" id="jobDescription" class="form-control" required>
+            </div>
+            <div id="experience-section">
+                <!-- Work experience fields will be dynamically added here -->
+            </div>
+            <button type="button" id="addExperienceBtn" class="btn">Add Another Experience</button>
 
-    <button id="experience-toggle">Experience</button>
+            <h2>Education</h2>
+            <div class="form-group">
+                <label for="degree">Degree:</label>
+                <input type="text" id="degree" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="institute">Institute:</label>
+                <input type="text" id="institute" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" class="form-control" required>
+            </div>
+            <div id="education-section">
+                <!-- Education fields will be dynamically added here -->
+            </div>
+            <button type="button" id="addEducationBtn" class="btn">Add Another Education</button>
 
-    <h2 class="section-title">Academics</h2>
-    <div id="academics-section" class="toggle-section">
-      <table class="academics-table">
-          <tr>
-              <th>Course</th>
-              <th>Institute</th>
-              <th>Location</th>
-          </tr>
-          <tr>
-              <td>S.S.C (Science)</td>
-              <td>Board of Secondary Education</td>
-              <td>Karachi, Pakistan</td>
-          </tr>
-          <tr>
-              <td>H.S.C (Pre-Engineering)</td>
-              <td>Board of Intermediate Education</td>
-              <td>Karachi, Pakistan</td>
-          </tr>
-          <tr>
-              <td>Bachelor of Arts</td>
-              <td>Federal Urdu University</td>
-              <td>Karachi, Pakistan</td>
-          </tr>
-      </table>
-    </div>
+            <h2>Skills</h2>
+            <div class="form-group">
+                <label for="skills">List your skills (comma separated):</label>
+                <input type="text" id="skills" class="form-control" required>
+            </div>
 
-    <button id="academics-toggle">Academics</button>
+            <h2>Certifications</h2>
+            <div class="form-group">
+                <label for="certifications">Certifications (comma separated):</label>
+                <input type="text" id="certifications" class="form-control">
+            </div>
 
-    <h2 class="section-title">Professional Skills</h2>
-    <div id="skills-section" class="toggle-section">
-      <ul class="skills-list">
-          <li>Team management experience</li>
-          <li>Listening and communication skills</li>
-          <li>Logical problem-solving approach</li>
-          <li>Expertise in Cisco Systems and computer systems</li>
-      </ul>
-    </div>
+            <button type="submit" class="btn btn-primary">Generate Resume</button>
+        </form>
 
-    <button id="skills-toggle">Skills</button>
-  </section>
+        <hr>
 
-  <script src="./src/script/resume.js" type="module"></script>
+        <h2>Your Resume</h2>
+        <div id="resumeOutput" class="resume-output"></div>
+    </section>
+
+    <script src="./public/script/resume.js" type="module"></script>
 </body>
 </html>
