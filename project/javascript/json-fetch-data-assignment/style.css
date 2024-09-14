@@ -1,0 +1,141 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+.top-heading{
+    text-align: center;
+}
+
+/* Container Styling */
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card Styling for User List and User Posts */
+.card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex: 1;
+    min-width: 180px;
+    transition: transform 0.1s ease, box-shadow 0.3s ease;
+    max-width: 15%; 
+}
+
+.card2 {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex: 1;
+    min-width: 280px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 75%; 
+    height: 400px;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.card2.show {
+    opacity: 1;
+    visibility: visible; /* Make it interactable */
+    animation: scaleUp 0.5s ease-out;
+}
+
+.card:hover, .card2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.card h2, .card2 h2 {
+    margin-top: 0;
+    font-size: 1.6rem;
+    color: #333;
+}
+
+
+.card p, .card2 p {
+    margin: 5px 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #666;
+}
+
+.sticky-header {
+    
+    position: sticky;
+    top: 0; 
+    background-color: white; 
+    z-index: 100; 
+}
+
+.username {
+    cursor: pointer;
+    color: #007bff;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.username:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Loading Indicator Styling */
+#user-posts p {
+    font-size: 0.9rem;
+    color: #888;
+    text-align: center;
+}
+#user-posts h3 {
+    font-size: 1.2rem;
+    
+}
+@keyframes scaleUp {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; 
+    }
+
+    .card, .card2 {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+}
