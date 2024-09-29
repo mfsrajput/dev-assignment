@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1, h2 {
+    color: #008080;
+}
+
+.user-section, .product-section, .post-section, .comments-section {
+    margin-top: 40px;
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    justify-content: space-around; /* Space out cards */
+}
+
+.card {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 12px;
+    overflow: hidden; /* Ensure content does not overflow */
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 250px; /* Fixed width for consistent card sizes */
+    margin: 10px; /* Space between cards */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Add a zoom effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deepen the shadow */
+}
+
+.card img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%; /* Ensure the image fits within the card */
+    height: 150px; /* Reduced image height */
+    object-fit: cover; /* Maintain aspect ratio while cropping excess */
+}
+
+.card-body {
+    padding: 20px;
+    background: linear-gradient(to bottom, #ffffff, #f1f1f1); /* Add subtle gradient */
+    text-align: center; /* Center align text */
+}
+
+.card-title {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.2em; /* Increase font size */
+}
+
+.card-text {
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}

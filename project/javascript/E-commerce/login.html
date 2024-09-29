@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+</head>
+<body>
+
+<!-- Button trigger modal -->
+<body class="bg-light">
+
+    <!-- Button trigger modal -->
+    <div class="container mt-5 text-center">
+        <button type="button" id="openModal" class="btn btn-primary">Sign Up</button>
+    </div>
+
+    <!-- Modal -->
+    <div id="exampleModal" class="modal" tabindex="-1" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sign Up Form</h5>
+                    <button type="button" id="closeModal" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input id="firstName" type="text" class="form-control" placeholder="First Name">
+                            <span id="outputFirstName" class="form-text text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input id="lastName" type="text" class="form-control" placeholder="Last Name">
+                            <span id="outputLastName" class="form-text text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input id="email" type="text" class="form-control" placeholder="Enter Your Email">
+                            <span id="outputEmail" class="form-text text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input id="password" type="password" class="form-control" placeholder="Create Password">
+                            <span id="outputPassword" class="form-text text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contact" class="form-label">Contact</label>
+                            <input id="contact" type="text" class="form-control" placeholder="Enter Contact">
+                            <span id="outputContact" class="form-text text-danger"></span>
+                        </div>
+
+                        <!-- Password guidelines -->
+                        <div class="mb-3">
+                            <div class="form-text">Password must contain:</div>
+                            <label class="password-check d-block">8 Characters</label>
+                            <label class="password-check d-block">1 Lowercase Character</label>
+                            <label class="password-check d-block">1 Uppercase Character</label>
+                            <label class="password-check d-block">1 Numerical Character</label>
+                            <label class="password-check d-block">1 Special Character</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="chek_btn" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+let outputFirstName = document.getElementById("outputFirstName");
+let outputLastName = document.getElementById("outputLastName");
+let outputEmail = document.getElementById("outputEmail");
+let outputPassword = document.getElementById("outputPassword");
+let outputContact = document.getElementById("outputContact");
+let firstName = document.getElementById("firstName");
+let lastName = document.getElementById("lastName");
+let email = document.getElementById("email");
+let password = document.getElementById("password");
+let contact = document.getElementById("contact");
+let btn = document.getElementById("chek_btn");
+let openModalBtn = document.getElementById("openModal");
+let closeModalBtn = document.getElementById("closeModal");
+let modal = document.getElementById("exampleModal");
+
+// Regex patterns
+let nameRegex = /^[A-Za-z]{2,}$/; // At least 2 characters
+let emailRegex = /([A-Za-z0-9._-]+@[A-Za-z0-9]+\.[A-Za-z]{2,})/;
+let passwordRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,16}$/;
+let contactRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+
+// Open modal
+openModalBtn.addEventListener("click", function () {
+    modal.style.display = "block";
+});
+
+// Close modal
+closeModalBtn.addEventListener("click", function () {
+    modal.style.display = "none";
+});
+
+btn.addEventListener("click", function () {
+    let firstNameValue = firstName.value;
+    let lastNameValue = lastName.value;
+    let emailValue = email.value;
+    let passwordValue = password.value;
+    let contactValue = contact.value;
+
+    let firstNameResult = nameRegex.test(firstNameValue);
+    let lastNameResult = nameRegex.test(lastNameValue);
+    let emailResult = emailRegex.test(emailValue);
+    let passwordResult = passwordRegex.test(passwordValue);
+    let contactResult = contactRegex.test(contactValue);
+
+    // Validate and display messages
+    outputFirstName.textContent = firstNameResult ? "" : "Invalid First Name";
+    outputLastName.textContent = lastNameResult ? "" : "Invalid Last Name";
+    outputEmail.textContent = emailResult ? "Valid Email" : "Invalid Email";
+    outputPassword.textContent = passwordResult ? "Valid Password" : "Invalid Password";
+    outputContact.textContent = contactResult ? "Valid Contact" : "Invalid Contact";
+
+    // Clear input fields after submission
+    firstName.value = "";
+    lastName.value = "";
+    email.value = "";
+    password.value = "";
+    contact.value = "";
+});
+
+// Password strength check function
+function passCheck(data) {
+    var passClass = document.getElementsByClassName('password-check');
+    const lowerCase = /(?=.*[a-z])/;
+    const upperCase = /(?=.*[A-Z])/;
+    const number = /(?=.*[0-9])/;
+    const specialChar = /(?=.*[\W_])/;
+    const eightChar = /.{8,}/;
+
+    passClass[0].style.color = eightChar.test(data) ? "green" : "grey";
+    passClass[1].style.color = lowerCase.test(data) ? "green" : "grey";
+    passClass[2].style.color = upperCase.test(data) ? "green" : "grey";
+    passClass[3].style.color = number.test(data) ? "green" : "grey";
+    passClass[4].style.color = specialChar.test(data) ? "green" : "grey";
+}
+
+// Event listener for password input
+password.addEventListener("input", function () {
+    passCheck(password.value);
+});
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
