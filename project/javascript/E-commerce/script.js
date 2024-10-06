@@ -139,7 +139,7 @@ const categoryFilter = debounce(() => {
 const fetchProducts = async () => {
     showLoader();
     try {
-        const response = await fetch('https://fakestoreapi.in/api/products');
+        const response = await fetch('https://fakestoreapi.in/api/products?limit=300');
         if (!response.ok) throw new Error('Network response was not ok');
         
         const data = await response.json();
@@ -169,7 +169,7 @@ const displayProduct = async (allCheckCategory = []) => {
     const categoryImages = new Set(); // To store unique images for categories
 
     try {
-        const product = await fetch('https://fakestoreapi.in/api/products');
+        const product = await fetch('https://fakestoreapi.in/api/products?limit=300');
         if (!product.ok) throw new Error('Network response was not ok');
         
         const data = await product.json();
