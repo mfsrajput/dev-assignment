@@ -201,20 +201,47 @@ const displayProduct = async (allCheckCategory = []) => {
                         <h4>${element.category}</h4>
                         <p>Price: ${element.price} Pkr</p>
                         <p>Brand: ${element.brand}</p>
-                        <a href="#" class="btn btn-primary" onclick='addToCart(${JSON.stringify(element)})'>Add to Cart</a>
+                        <button class="btn btn-primary add-cart" data-product-id="${element.id}">Add to Cart</button>
                     </div>
                 </div>`;
 
                 // Add one image per category to the slider
                 categoryImages.add(element.image); // Use Set to avoid duplicates
             }
+            
         });
+        const isLoggedIn = () => {
+            return localStorage.getItem("currentUser") !== null; // Assuming currentUser is stored on login
+        };
+        // check if user click on add to cart without login show alert for login
+        const addCartButtons = document.querySelectorAll('.add-cart');
+
+        addCartButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                if (!isLoggedIn()) {
+                    alert("Please login to add items to cart");
+                    showLoginForm(); // This should be your function to display the login form
+                    return;
+                }
+                // If the user is logged in, proceed with adding the item to the cart
+                const productId = event.target.getAttribute('data-product-id');
+                const product = products.find(p => p.id == productId);
+                
+                addToCart(product);
+                updateCartDisplay();
+                showToast(`${product.title} has been added to your cart!`);
+            });
+        }); 
+        
+
+        
 
         // Display the slider with the unique category images
         displaySlider([...categoryImages]);
     } catch (error) {
         console.error('Error displaying products:', error);
-        alert('Failed to display products. Please try again later.');
+       
     }
 };
 
@@ -249,6 +276,60 @@ cart = storedCart || [];
 if (window.location.pathname.includes('cart.html')) {
     updateCartDisplay();
 }
+const outputFirstName = document.getElementById("outputFirstName");
+const outputLastName = document.getElementById("outputLastName");
+const outputEmail = document.getElementById("outputSignUpEmail");
+const outputPassword = document.getElementById("outputSignUpPassword");
+const firstName = document.getElementById("firstName");
+const lastName = document.getElementById("lastName");
+const email = document.getElementById("signUpEmail");
+const password = document.getElementById("signUpPassword");
+const signupBtn = document.getElementById("signUpBtn");
+const signinBtn = document.getElementById("signInBtn");
+const signInForm = document.getElementById("signInForm");
+const signUpForm = document.getElementById("signUpForm");
+const toggleFormBtn = document.getElementById("toggleFormBtn");
+
+const nameRegex = /^[A-Za-z]{2,}$/;
+const emailRegex = /([A-Za-z0-9._-]+@[A-Za-z0-9]+\.[A-Za-z]{2,})/;
+const passwordRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,16}$/;
+
+function signUpUser() {
+    const firstNameValue = firstName.value;
+    const lastNameValue = lastName.value;
+    const emailValue = email.value;
+    const passwordValue = password.value;
+
+    const firstNameResult = nameRegex.test(firstNameValue);
+    const lastNameResult = nameRegex.test(lastNameValue);
+    const emailResult = emailRegex.test(emailValue);
+    const passwordResult = passwordRegex.test(passwordValue);
+
+    outputFirstName.textContent = firstNameResult ? "" : "Invalid First Name";
+    outputLastName.textContent = lastNameResult ? "" : "Invalid Last Name";
+    outputEmail.textContent = emailResult ? "" : "Invalid Email";
+    outputPassword.textContent = passwordResult ? "" : "Invalid Password";
+
+    if (firstNameResult && lastNameResult && emailResult && passwordResult) {
+        const newUser = {
+            firstName: firstNameValue,
+            lastName: lastNameValue,
+            email: emailValue,
+            password: passwordValue
+        };
+
+        const usersData = JSON.parse(localStorage.getItem("users")) || [];
+        usersData.push(newUser);
+        localStorage.setItem("users", JSON.stringify(usersData));
+
+        firstName.value = "";
+        lastName.value = "";
+        email.value = "";
+        password.value = "";
+
+        alert("Sign up successful! You can now log in.");
+    }}
+   
 
 // Initialize products when the page loads
 fetchProducts();
