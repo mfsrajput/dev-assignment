@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+      <!-- Dark Mode Toggle Button -->
+      <div class="dark-mode-toggle">
+        <button id="toggleDarkMode">Toggle Dark Mode</button>
+    </div>
+    <div class="container">
+        <h1 data-text="Crud Application Using Mock Api">Crud App Using Mock Api</h1>
+        <div class="row">
+            <div class="col-6">
+                <h2>Posts</h2>
+                <div id="loadingSpinner" class="loading" style="display: none;"></div> <!-- Spinner here -->
+                <div class="posts" id="posts">
+                    <!-- <div class="post">
+                        <div class="post-header">
+                            <img src="https://media.licdn.com/dms/image/v2/D4E03AQH6K1gMxPXU0g/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1711966816265?e=1733356800&v=beta&t=1MW6jy-PnQgv-ovmwrsvoYMfSLaN1WgAW5PMSY-XA2I" alt="Avatar">
+                            <div>
+                                <h3>Farhan Rajput (Developer)</h3>
+                                <small>9/29/2024, 10:30 AM</small>
+                            </div>
+                        </div>
+                        <p>This is the post body content.</p>
+                        <div class="actions">
+                            <button class="edit-btn" onclick="editPost(1)">Edit</button>
+                            <button class="delete-btn" onclick="deletePost(1)">Delete</button>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="col-4">
+                <div id="create-post">
+                    <h2>Create Posts</h2>
+                    <form id="createPostForm">
+                    <input type="text" name="name" id="name"
+                    placeholder="Enter You Name" required>
+                    <input type="text" name="title" id="title"
+                    placeholder="Your Title" required>
+                    <input type="text" name="avatar" id="avatar"
+                    placeholder="Your Profile Here" required>
+                    <textarea name="body" id="body"
+                    placeholder="Enter your Describion"></textarea>
+                    <button type="submit" class="btn">Create Post</button>
+                </form>
+                </div>
+                <!-- -------------Update-Form------------ -->
+                <div id="Update-post" style="display: none;">
+                    <h2>Update Posts</h2>
+                    <form id="UpdatePostForm">
+                    <input type="text" name="name" id="name"
+                    placeholder="Enter You Name" required>
+                    <input type="text" name="title" id="title"
+                    placeholder="Your Title" required>
+                    <input type="text" name="avatar" id="avatar"
+                    placeholder="Your Profile Here" required>
+                    <textarea name="body" id="body"
+                    placeholder="Enter your Describion"></textarea>
+                    <button type="submit" class="btn">Update Post</button>
+                    <button type="button" id="cancelUpdate" class="btn cancel-btn">Cancel</button> <!-- Added Cancel Button -->
+
+                </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script src="./app.js"></script>
+</body>
+</html>

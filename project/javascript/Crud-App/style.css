@@ -1,0 +1,322 @@
+/* Define color variables */
+:root {
+    --primary-color: #007bff; /* Bright blue */
+    --primary-hover: #0056b3; /* Darker blue */
+    --secondary-color: #e94e77; /* Bright pink */
+    --secondary-hover: #d43b67; /* Darker pink */
+    --background-color: #f4f7fa; /* Light gray background */
+    --container-background: #ffffff; /* White */
+    --text-color: #333; /* Dark gray text */
+    --subtext-color: #555; /* Medium gray text */
+    --muted-text-color: #777; /* Light gray text */
+    --border-color: #e1e1e1; /* Light border */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Shadow color */
+    --hover-shadow-color: rgba(0, 0, 0, 0.2); /* Hover shadow color */
+    --success-color: #28a745; /* Success green */
+    --warning-color: #ffc107; /* Warning yellow */
+    --error-color: #dc3545; /* Error red */
+}
+
+/* Reset margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 20px;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode Toggle */
+.dark-mode {
+    --background-color: #333;
+    --container-background: #444;
+    --text-color: #fff;
+    --subtext-color: #ddd;
+    --border-color: #555;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --hover-shadow-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dark Mode Toggle Button Styling */
+.toggle-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Smooth Transition for Theme Change */
+body, .container, h1, h2, input, textarea, button, .post, .actions button {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Container Styling */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: var(--container-background);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 30px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Section Headers */
+h2.section-header {
+    font-size: 2em;
+    color: var(--primary-color);
+    margin: 20px 0;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Hover effect for container */
+.container:hover {
+    box-shadow: 0 8px 40px var(--hover-shadow-color);
+    transform: scale(1.02);
+}
+
+/* Row Flexbox Styling */
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+/* Column Styling */
+.col-6 {
+    flex-basis: 68%;
+    margin-bottom: 20px;
+}
+.col-4 {
+    flex-basis: 28%;
+    margin-bottom: 20px;
+}
+
+/* Header Styling */
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 25px;
+    color: var(--primary-color);
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Elements */
+form {
+    margin-bottom: 20px;
+}
+
+/* Input and textarea styles */
+input, textarea {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: inset 0 2px 5px var(--shadow-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Input focus styles */
+input:focus, textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+    outline: none;
+}
+
+/* Button Styling */
+button {
+    padding: 12px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Success Button */
+.success-btn {
+    background-color: var(--success-color);
+}
+
+.success-btn:hover {
+    background-color: var(--success-color);
+}
+
+/* Warning Button */
+.warning-btn {
+    background-color: var(--warning-color);
+}
+
+.warning-btn:hover {
+    background-color: var(--warning-color);
+}
+
+/* Cancel Button */
+.cancel-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background-color: var(--secondary-hover);
+    transform: translateY(-2px);
+}
+
+/* Post Styling */
+.post {
+    background-color: var(--container-background);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px var(--shadow-color);
+    margin-bottom: 15px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.post:hover {
+    box-shadow: 0 4px 20px var(--hover-shadow-color);
+    transform: translateY(-1px);
+}
+
+/* Post Header */
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.post-header img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border: 2px solid var(--primary-color);
+}
+
+.post-header h3 {
+    margin: 0;
+    font-size: 1.4em;
+    color: var(--text-color);
+}
+
+/* Post Content */
+.post p {
+    font-size: 0.95em;
+    color: var(--subtext-color);
+    margin-top: 5px;
+    line-height: 1.4;
+}
+
+/* Action Buttons (Edit & Delete) */
+.actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.actions button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-right: 10px;
+}
+
+.actions button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* Delete Button */
+.actions .delete-btn {
+    background-color: var(--error-color);
+}
+
+.actions .delete-btn:hover {
+    background-color: var(--error-color);
+}
+
+/* Loading Spinner */
+.loading {
+    border: 4px solid var(--border-color); /* Light border */
+    border-top: 4px solid var(--primary-color); /* Primary color for the spinner */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+    display: block;
+}
+
+
+
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .col-6 {
+        flex-basis: 100%;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px 0;
+    }
+}
