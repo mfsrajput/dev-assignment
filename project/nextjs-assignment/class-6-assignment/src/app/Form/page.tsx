@@ -21,6 +21,20 @@ export default function Forms() {
 
       <div className="py-5">
         <form className="flex flex-col gap-5 justify-center items-center border">
+        <input
+            type="text"
+            className="p-2 rounded-2xl border-b-8 w-2/5"
+            name="First-Name"
+            placeholder="Enter Your First Name"
+            required
+          />
+          <input
+            type="text"
+            className="p-2 rounded-2xl border-b-8 w-2/5"
+            name="Last-Name"
+            placeholder="Enter Your Last Name"
+            required
+          />
           <input
             type="email"
             className="p-2 rounded-2xl border-b-8 w-2/5"
