@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.3",
+    "aos": "^2.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^7.0.1",
