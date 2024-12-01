@@ -14,7 +14,6 @@ import Footer from "../components/Footer";
 import "../../Assets/Css/bootstrap.min.css"
 import "../../Assets/Css/responsive.css"
 import "../../Assets/Css/line-awesome.min.css"
-import "../../Assets/Css/aos.css"
 import "../../Assets/Css/style.css"
 
 
