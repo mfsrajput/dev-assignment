@@ -20,8 +20,8 @@ export function Header() {
             <Link href="/shop" className="text-sm font-medium hover:text-[#B88E2F]">
               Shop
             </Link>
-            <Link href="/about" className="text-sm font-medium hover:text-[#B88E2F]">
-              About
+            <Link href="/blog" className="text-sm font-medium hover:text-[#B88E2F]">
+              Blog
             </Link>
             <Link href="/contact" className="text-sm font-medium hover:text-[#B88E2F]">
               Contact

@@ -7,9 +7,15 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { useCart } from "@/components/CartProvider"
 
+type AddToCartFormProps = {
+  productId: string;
+  name: string;
+  price: number;
+  image: string;
+};
 
 
-export default function AddToCartForm() {
+export default function AddToCartForm({ productId, name, price, image }: AddToCartFormProps) {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState("M")
   const [color, setColor] = useState("purple")
@@ -19,13 +25,13 @@ export default function AddToCartForm() {
     dispatch({
       type: "ADD_ITEM",
       payload: {
-        id: "asgaard-sofa",
-        name: "Asgaard Sofa",
-        price: 250000,
+        id: "productId",
+        name,
+        price,
         quantity,
         size,
         color,
-        image: "/images/potty.png", // Update with actual product image URL
+        image,
       },
     })
   }
@@ -65,18 +71,26 @@ export default function AddToCartForm() {
             onValueChange={setColor}
             className="flex items-center gap-2 mt-2"
           >
-            {["purple", "black", "brown"].map((colorOption) => (
-              <Label
-                key={colorOption}
-                htmlFor={`color-${colorOption}`}
-                className="border cursor-pointer rounded-md p-2 flex items-center gap-2 [&:has(:checked)]:bg-muted"
-              >
-                <RadioGroupItem id={`color-${colorOption}`} value={colorOption} />
-                <span className={`w-4 h-4 rounded-full bg-${colorOption === 'purple' ? 'purple-500' : colorOption === 'black' ? 'black' : 'amber-800'}`} />
-              </Label>
-            ))}
-          </RadioGroup>
-        </div>
+        {["purple", "black", "brown"].map((colorOption) => {
+      const colorClasses: { [key: string]: string } = {
+        purple: "bg-purple-500",
+        black: "bg-black",
+        brown: "bg-amber-800",
+      };
+
+      return (
+        <Label
+          key={colorOption}
+          htmlFor={`color-${colorOption}`}
+          className="border cursor-pointer rounded-md p-2 flex items-center gap-2 [&:has(:checked)]:bg-muted"
+        >
+          <RadioGroupItem id={`color-${colorOption}`} value={colorOption} />
+          <span className={`w-4 h-4 rounded-full ${colorClasses[colorOption]}`} />
+        </Label>
+      );
+    })}
+  </RadioGroup>
+</div>
       </div>
 
       {/* Quantity & Add to Cart Section */}

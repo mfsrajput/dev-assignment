@@ -1,42 +1,76 @@
+'use client';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import HeroDefault from '@/components/HeroDefault';
+import { Product } from '../../../types/products';
+import { client } from '@/sanity/lib/client';
+import { allProducts } from '@/sanity/lib/queries';
+import ProductCard from '@/components/Productcard';
+import { urlFor } from '@/sanity/lib/image';
+import { useRouter } from 'next/navigation';
 
-// Sample product data (replace with actual static data or a larger array)
-const products = [
-  { id: 1, name: "Syltherine", price: "Rs. 2,500,000", description: "Stylish Sofa Chair", img: "/images/Syltherine.png" },
-  { id: 2, name: "Leviosa", price: "Rs. 2,500.00", description: "Stylish Sofa Chair", img: "/images/Leviosa.png" },
-  { id: 3, name: "Lolito", price: "Rs. 7,000.00", description: "Luxury Big Sofa", img: "/images/Lolito.png" },
-  { id: 4, name: "Respira", price: "Rs. 500.00", description: "Minimal Stand", img: "/images/Respira.png" },
-  { id: 5, name: "Grifo", price: "Rs. 500.00", description: "Minimal Stand", img: "/images/Grifo.png" },
-  { id: 6, name: "Muggo", price: "Rs. 2500.00", description: "Small Mug", img: "/images/Muggo.png" },
-  { id: 7, name: "Pingky", price: "Rs. 500.00", description: "Notebook", img: "/images/Pingky.png" },
-  { id: 8, name: "Potty", price: "Rs. 500.00", description: "Potty", img: "/images/potty.png" },
-  // Add more products as needed
-];
+const ShopPage =() => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [mounted, setMounted] = useState<boolean>(false);
+  const router = useRouter();
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        setLoading(true);
+        const fetchedProducts: Product[] = await client.fetch(allProducts);
+        setProducts(fetchedProducts);
+      } catch (err) {
+        setError('Failed to fetch products. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadProducts();
+  }, []);
 
-export default function ShopPage() {
+  if (!mounted) {
+    return null; // Return nothing until the component is mounted
+  }
+
+  if (loading) {
+    return <p className="text-center">Loading products...</p>;
+  }
+
+  if (error) {
+    return <p className="text-center text-red-500">{error}</p>;
+  }
+  
   return (
     <div>
       <HeroDefault link1="Home" link2="Shop" />
       <div className="p-8">
         <h1 className="text-3xl font-semibold text-center mb-8">Shop</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {products.map((product) => (
-            <div key={product.id} className="border rounded-lg overflow-hidden shadow-lg bg-white">
-              <Link href={`/shop/${product.id}`} className="block">
-                <img src={product.img} alt={product.name} className="w-full h-64 object-cover" />
-              </Link>
-              <div className="p-4">
-                <h2 className="text-xl font-bold">{product.name}</h2>
-                <p className="text-lg text-gray-500">{product.price}</p>
-                <Link href={`/shop/${product.id}`} className="text-indigo-600 mt-4 inline-block">
-                  View Details
-                </Link>
-              </div>
-            </div>
-          ))}
+          {products.length > 0? (
+            products.map((product) => (
+            <ProductCard 
+            key={product._id} 
+            product={product}
+            onClick={() => router.push(`/shop/${product._id}`)} // Navigate to product detail page
+            />
+          ))
+  )
+          : (
+            <p className="text-center col-span-full">No products available.</p>
+          )}
         </div>
       </div>
     </div>
+    
   );
 }
+export default ShopPage;
+
+
+
+

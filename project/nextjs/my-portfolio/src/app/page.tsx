@@ -1,24 +1,33 @@
-import { Navbar } from "@/components/navbar"
-import { Home } from "@/components/home"
-import { About } from "@/components/about"
-import { Career } from "@/components/career"
-import { Contact } from "@/components/contact"
-import { Footer } from "@/components/footer"
-import { Projects } from "@/components/projects"
+
+import Header from "@/components/Header"
+import Hero from "@/components/Hero"
+import Projects from "@/components/Projects"
+import Skills from "@/components/Skills"
+import Footer from "@/components/Footer"
+import AboutMe from "@/components/AboutMe"
+import Contact from "@/components/Contact"
+
+
+
 
 export default async function Page() {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main className="container mx-auto px-4">
-        <Home />
-        <About />
-        <Projects />
-        <Career />
+    <main className="relative bg-blac-100
+    flex justify-center items-center flex-col overflow-hidden
+    mx-auto sm:px-10 px-5">
+      <div className="max-w-7xl w-full">
+        
+        <Header/>
+        <Hero/>
+        <AboutMe/>
+        <Projects/>
+        <Skills/>
         <Contact />
-      </main>
-      <Footer />
-    </div>
+        <Footer/>
+
+      </div>
+
+    </main>
   )
 }
 

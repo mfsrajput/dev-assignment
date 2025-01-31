@@ -1,5 +1,6 @@
 import Image from "next/image";
 import heroImg from "../../public/images/HeroImg.png";
+import Link from 'next/link';
 
 export function HeroSection() {
   return (
@@ -13,12 +14,14 @@ export function HeroSection() {
           <p className="text-gray-600 mb-8">
             Discover a wide range of stylish furniture to transform your living spaces.
           </p>
+          <Link  href = {'/shop'}>
           <button className="bg-[#B88E2F] text-white py-3 px-6 rounded-lg hover:bg-[#9A7625]">
             Buy Now
-          </button>
+          </button></Link>
         </div>
       </div>
       <div className="absolute inset-0 z-[-1]">
+      
         <Image src={heroImg} alt="Hero Image" layout="fill" objectFit="cover" />
       </div>
     </section>
