@@ -2,6 +2,8 @@ import Image from "next/image";
 import heroImg from "../../public/images/HeroImg.png";
 import Link from 'next/link';
 
+
+//HomePage components
 export function HeroSection() {
   return (
     <section className="relative">

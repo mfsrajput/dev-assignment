@@ -45,14 +45,14 @@ export const product = defineType({
             type:"boolean",
             title:"New Badge",
         },
-        {
-            name: "slug",
-            type: "slug",
-            title: "Slug",
-            options: {
-              source: 'title', // Automatic slug based on title
-              maxLength: 96,
-            },
-          },
+        // {
+        //     name: "slug",
+        //     type: "slug",
+        //     title: "Slug",
+        //     options: {
+        //       source: 'title', // Automatic slug based on title
+        //       maxLength: 96,
+        //     },
+        //   },
     ]
 })

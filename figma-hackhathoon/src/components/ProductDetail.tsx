@@ -1,21 +1,34 @@
 // ProductDetail
 'use client';
-
+import { useState } from 'react';
 import { Product } from '../../types/products';
 import { urlFor } from '@/sanity/lib/image';
 import AddToCartForm from '@/components/AddToCartForm';
 import HeroDefault from '@/components/HeroDefault';
+import Frame from './frame';
+import { BrowseRange } from './BrowseRange';
 
 interface ProductDetailProps {
   product: Product;
 }
 
 const ProductDetail = ({ product }: ProductDetailProps) => {
-  console.log('Product Image:', product.productImage);
+  const [showPopup, setShowPopup] = useState(false); // State for popup
+  const [popupMessage, setPopupMessage] = useState(''); // State for popup message
+  // console.log('Product Image:', product.productImage);
   const productImageUrl = product.productImage?.asset?._ref
     ? urlFor(product.productImage).url()
     : '/placeholder-image.png';
-    console.log('Product Image URL:', productImageUrl); 
+    // console.log('Product Image URL:', productImageUrl); 
+      // Function to show popup
+  const handleAddToCart = () => {
+    setPopupMessage(`${product.title} has been added to your cart`);
+    setShowPopup(true);
+    
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 2000); // Hide after 2 seconds
+  };
   
 
   return (
@@ -24,13 +37,30 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
       <div className="container mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
           {/* Product Gallery */}
-          <div className="aspect-square relative overflow-hidden rounded-xl bg-muted">
-            <img
-              src={productImageUrl}
-              alt={product.title || 'Product Image'}
-              className="object-cover w-full h-full"
-            />
+          {/* Product Gallery with Image Boxes */}
+          <div className="w-full flex md:flex-row flex-col md:py-12">
+            <div className="md:w-5/5 w-full md:flex gap-6">
+              {/* Mobile View Large Image */}
+              <div className="w-full md:hidden block p-6 bg-[#F9F1E7] mb-3 aspect-square overflow-hidden">
+                <img src={productImageUrl} alt={product.title} className="object-cover w-full h-min" />
+              </div>
+              
+              {/* Small Thumbnail Images */}
+              <div className="flex md:flex-col flex-row md:gap-5 gap-3">
+                {[...Array(4)].map((_, index) => (
+                  <span key={index} className="w-32 md:h-28 bg-[#F9F1E7] p-4">
+                    <img src={productImageUrl} alt={product.title} className="object-cover w-full h-full" />
+                  </span>
+                ))}
+              </div>
+              
+              {/* Large Image Desktop View */}
+              <div className="md:flex-1 md:h-[520px] md:block hidden p-6 bg-[#F9F1E7]">
+                <img src={productImageUrl} alt={product.title} className="object-cover w-full h-full max-w-[1000px] mx-auto" />
+              </div>
+            </div>
           </div>
+
 
           <div className="space-y-6">
             {/* Product Name */}
@@ -58,7 +88,10 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
             <AddToCartForm productId={product._id}
             name={product.title}
             price={product.price}
-             image={productImageUrl} />
+             image={productImageUrl}
+             onAddToCart={handleAddToCart} />
+
+
 
             {/* Product Details */}
             <div className="border-t pt-6 space-y-2 text-sm">
@@ -78,6 +111,15 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           </div>
         </div>
       </div>
+      {/* Popup for Add to Cart */}
+      {showPopup && (
+        <div className="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-md">
+          {popupMessage}
+        </div>
+      )}
+      <BrowseRange/>
+      {/* Frame Component */}
+      <Frame/>
     </div>
   );
 };

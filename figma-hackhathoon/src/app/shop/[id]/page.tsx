@@ -1,9 +1,10 @@
 
 import { client } from '@/sanity/lib/client';
 import { productById } from '@/sanity/lib/queries';
-import { Product } from '../../../../types/products';
 import ProductDetail from '../../../components/ProductDetail';
 import { notFound } from 'next/navigation';
+
+
 
 interface ProductPageProps {
   params: { id: string };
@@ -24,7 +25,9 @@ const ProductPage = async ({ params }: ProductPageProps) => {
 } catch (error) {
   console.error('Error fetching product:', error);
     notFound(); // Show a 404 page if an error occurs
+  
 }
+
 };
 
 

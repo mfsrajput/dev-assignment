@@ -16,7 +16,8 @@ export const productById = `
     },
     price,
     tags,
-    discountPercentage,
-    isNew
+    dicountPercentage,
+    isNew,
+    slug
   }
 `;

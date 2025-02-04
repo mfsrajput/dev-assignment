@@ -7,6 +7,8 @@ const categories = [
   { title: "Dining", href: "/images/Dining.png" },
 ];
 
+
+// Homepage components
 export function BrowseRange() {
   return (
     <section className="bg-white py-16">

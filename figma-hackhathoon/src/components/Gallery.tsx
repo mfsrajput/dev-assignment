@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 
+// Homepage components
 export default function Gallery() {
   return (
     <div className="px-5 mx-5">

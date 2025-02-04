@@ -1,3 +1,5 @@
+
+// Homepage components
 export function ShareSection() {
     return (
       <section className="bg-[#B88E2F] text-white py-16">

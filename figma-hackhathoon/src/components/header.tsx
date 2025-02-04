@@ -37,9 +37,10 @@ export function Header() {
             <button className="p-2 hover:text-[#B88E2F]">
               <Heart className="h-5 w-5" />
             </button>
-            <button className="p-2 hover:text-[#B88E2F]">
-              <ShoppingCart className="h-5 w-5" />
-            </button>
+            
+            <Link href="/cart" className="p-2 hover:text-[#B88E2F]">
+  <ShoppingCart className="h-5 w-5" />
+</Link>
           </div>
         </div>
       </div>

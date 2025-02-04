@@ -20,7 +20,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <div className="p-4">
         <h2 className="text-xl font-bold">{product.title || 'Unnamed Product'}</h2>
         <p className="text-lg text-gray-500">
-          {product.price ? `₹${product.price}` : 'Price not available'}
+          {product.price ? `$${product.price}` : 'Price not available'}
         </p>
         {product.discountPercentage && (
           <p className="text-sm text-gray-400">{`${product.discountPercentage}% off`}</p>

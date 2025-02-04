@@ -12,10 +12,11 @@ type AddToCartFormProps = {
   name: string;
   price: number;
   image: string;
+  onAddToCart?: () => void; // Accept the function as a prop
 };
 
 
-export default function AddToCartForm({ productId, name, price, image }: AddToCartFormProps) {
+export default function AddToCartForm({ productId, name, price, image, onAddToCart }: AddToCartFormProps) {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState("M")
   const [color, setColor] = useState("purple")
@@ -25,7 +26,7 @@ export default function AddToCartForm({ productId, name, price, image }: AddToCa
     dispatch({
       type: "ADD_ITEM",
       payload: {
-        id: "productId",
+        id: productId,
         name,
         price,
         quantity,
@@ -34,6 +35,9 @@ export default function AddToCartForm({ productId, name, price, image }: AddToCa
         image,
       },
     })
+    if (onAddToCart) {
+      onAddToCart(); // Show popup notification
+    }
   }
 
   // Disabled button condition

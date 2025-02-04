@@ -16,6 +16,7 @@ interface HeroDefaultProps {
         <Link href="/" className="text-black-800 text-lg">{link1}</Link>
         {/* link2 */}
         <Link href="/shop" className="text-black-600 text-lg">{link2}</Link>
+        
       </div></div>
         
     )
